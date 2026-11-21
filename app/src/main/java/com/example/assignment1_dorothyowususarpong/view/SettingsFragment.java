@@ -1,4 +1,4 @@
-package com.example.assignment1_dorothyowususarpong;
+package com.example.assignment1_dorothyowususarpong.view;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.LinearLayout;
 
+import com.example.assignment1_dorothyowususarpong.R;
 
 
 /**

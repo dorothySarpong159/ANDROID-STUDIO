@@ -1,11 +1,18 @@
 package com.example.assignment1_dorothyowususarpong;
 
 import android.os.Bundle;
+import android.util.Log;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.assignment1_dorothyowususarpong.databinding.ActivityWeatherDetailBinding;
+import com.example.assignment1_dorothyowususarpong.model.WeatherData;
+
+import java.util.Locale;
 
 public class WeatherDetailActivity extends AppCompatActivity {
 
+    private static final String TAG = "WeatherDetailActivity";
     private ActivityWeatherDetailBinding binding;
 
     @Override
@@ -13,31 +20,43 @@ public class WeatherDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityWeatherDetailBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        Log.i(TAG, "method is reachable");
 
-        // Retrieve passed city data
         String cityName = getIntent().getStringExtra("CITY_NAME");
-        if (cityName == null) {
-            cityName = "London";
-        }
+        WeatherData weatherData = getIntent().getSerializableExtra("weatherData", WeatherData.class);
 
-        binding.tvDetailCity.setText(cityName);
+        if (weatherData != null) {
+            String displayCity = (cityName != null && !cityName.isEmpty())
+                    ? cityName
+                    : weatherData.getLocationName();
 
-        // Display hardcoded values based on selected city (will be replaced by live API data in Assignment 2)
-        if (cityName.contains("Toronto")) {
-            binding.tvDetailTemp.setText("22°C (71.6°F)");
-            binding.tvDetailCondition.setText("Condition: Sunny | Wind: 15 kph | Humidity: 50%");
-        } else if (cityName.contains("Tokyo")) {
-            binding.tvDetailTemp.setText("28°C (82.4°F)");
-            binding.tvDetailCondition.setText("Condition: Clear | Wind: 10 kph | Humidity: 45%");
-        } else if (cityName.contains("Sydney")) {
-            binding.tvDetailTemp.setText("20°C (68.0°F)");
-            binding.tvDetailCondition.setText("Condition: Sunny | Wind: 18 kph | Humidity: 55%");
-        } else if (cityName.contains("New York")) {
-            binding.tvDetailTemp.setText("11°C (51.8°F)");
-            binding.tvDetailCondition.setText("Condition: Rainy | Wind: 22 kph | Humidity: 80%");
+            if (weatherData.getRegion() != null && !weatherData.getRegion().isEmpty()) {
+                displayCity += ", " + weatherData.getRegion();
+            }
+
+            binding.tvDetailCity.setText(displayCity);
+
+            String tempText = String.format(
+                    Locale.getDefault(),
+                    "%.1f°C (%.1f°F)",
+                    weatherData.getTempC(),
+                    weatherData.getTempF()
+            );
+            binding.tvDetailTemp.setText(tempText);
+
+            String detailsText = String.format(
+                    Locale.getDefault(),
+                    "Condition: %s | Wind: %.1f kph | Feels Like: %.1f°C (%.1f°F)",
+                    weatherData.getConditionText(),
+                    weatherData.getWindKph(),
+                    weatherData.getFeelsLikeC(),
+                    weatherData.getFeelsLikeF()
+            );
+            binding.tvDetailCondition.setText(detailsText);
         } else {
-            binding.tvDetailTemp.setText("14°C (57.2°F)");
-            binding.tvDetailCondition.setText("Condition: Cloudy | Wind: 12 kph | Humidity: 78%");
+            binding.tvDetailCity.setText(cityName != null ? cityName : "Unknown Location");
+            binding.tvDetailTemp.setText("--°C (--°F)");
+            binding.tvDetailCondition.setText("Weather data unavailable");
         }
 
         if (binding.btnBack != null) {

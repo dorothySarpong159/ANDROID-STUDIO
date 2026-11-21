@@ -6,6 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 import com.example.assignment1_dorothyowususarpong.databinding.ActivityMainBinding;
+import com.example.assignment1_dorothyowususarpong.view.SavedFragment;
+import com.example.assignment1_dorothyowususarpong.view.SearchFragment;
+import com.example.assignment1_dorothyowususarpong.view.SettingsFragment;
 
 public class MainActivity extends AppCompatActivity {
 

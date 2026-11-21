@@ -4,27 +4,17 @@ plugins {
 
 android {
     namespace = "com.example.assignment1_dorothyowususarpong"
-    compileSdk {
-        version = release(37)
-    }
-    defaultConfig {
-        applicationId = "com.example.assignment1_dorothyowususarpong"
-        minSdk = 24
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
-    }
+    compileSdk = 37
 
     buildFeatures {
         viewBinding = true
         buildConfig = true
     }
 
-
     defaultConfig {
         applicationId = "com.example.assignment1_dorothyowususarpong"
         minSdk = 33
-        targetSdk = 37
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -38,6 +28,7 @@ android {
             }
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
@@ -49,6 +40,8 @@ dependencies {
     implementation(libs.appcompat)
     implementation(libs.constraintlayout)
     implementation(libs.material)
+    implementation(libs.okhttp)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.espresso.core)
     androidTestImplementation(libs.ext.junit)

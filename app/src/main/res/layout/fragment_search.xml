@@ -2,92 +2,28 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/bg_main"
+    android:orientation="vertical"
     android:padding="16dp">
 
     <EditText
         android:id="@+id/searchInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/accent_blue"
         android:hint="Search cities..."
-        android:singleLine="true"
+        android:imeOptions="actionSearch"
+        android:inputType="text"
         android:padding="12dp"
-        android:backgroundTint="@color/accent_blue" />
+        android:singleLine="true"
+        android:textColor="@color/text_primary"
+        android:textColorHint="@color/text_primary" />
 
-    <ScrollView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:fillViewport="true"
-        android:layout_marginTop="12dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/cityLondon"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="🇬🇧 London"
-                android:textColor="@color/text_primary"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:padding="16dp"
-                android:background="@color/card_bg"
-                android:layout_marginTop="8dp" />
-
-            <TextView
-                android:id="@+id/cityToronto"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="🇨🇦 Toronto"
-                android:textColor="@color/text_primary"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:padding="16dp"
-                android:background="@color/card_bg"
-                android:layout_marginTop="12dp" />
-
-            <TextView
-                android:id="@+id/cityTokyo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="🇯🇵 Tokyo"
-                android:textColor="@color/text_primary"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:padding="16dp"
-                android:background="@color/card_bg"
-                android:layout_marginTop="12dp" />
-
-            <TextView
-                android:id="@+id/citySydney"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="🇦🇺 Sydney"
-                android:textColor="@color/text_primary"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:padding="16dp"
-                android:background="@color/card_bg"
-                android:layout_marginTop="12dp" />
-
-            <TextView
-                android:id="@+id/cityNewYork"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="🇺🇸 New York"
-                android:textColor="@color/text_primary"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:padding="16dp"
-                android:background="@color/card_bg"
-                android:layout_marginTop="12dp" />
-
-        </LinearLayout>
-    </ScrollView>
+        android:layout_marginTop="12dp"
+        android:layout_weight="1" />
 
 </LinearLayout>
